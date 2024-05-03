@@ -2,23 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuaris;
 use Illuminate\Http\Request;
-use App\Models\Treballador;
 
-class ControladorTreballador extends Controller
+class UsuarisController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $dades_treballadors = Treballador::all();
-        return view('llista', compact('dades_treballadors'));
-        // Recollirà totes les entrades de la taula treballadors i les desarà dins d'una
-        //variable de nom $dades_treballadors
-        //Cridara a la vista llista.blade.php que es trobarà a resouces/views per mostrar
-        //les dades dels treballadors
-        //The compact() function creates an array from variables and their values.
+        //
     }
 
     /**
@@ -40,7 +34,7 @@ class ControladorTreballador extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Usuaris $usuaris)
     {
         //
     }
@@ -48,7 +42,7 @@ class ControladorTreballador extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Usuaris $usuaris)
     {
         //
     }
@@ -56,7 +50,7 @@ class ControladorTreballador extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Usuaris $usuaris)
     {
         //
     }
@@ -64,7 +58,7 @@ class ControladorTreballador extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Usuaris $usuaris)
     {
         //
     }
