@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('tipus', ['treballador', 'cap_de_departament']);
             $table->time('darrera_hora_d_entrada');
             $table->time('darrera_hora_de_sortida');
+            $table->timestamps();
         });
     }
 

@@ -15,15 +15,15 @@ class Clients extends Model
     
     protected $fillable = [
         'DNI_client',
-        'nom i cognoms',
+        'nom_i_cognoms',
         'edat',
-        'telèfon',
+        'telefon',
         'adreça',
         'ciutat',
         'email',
-        'número del permís de conducció',
-        'punts del permís de conducció',
-        'tipus de targeta',
-        'número de la targeta',
+        'numero_del_permis_de_conduccio',
+        'punts_del_permis_de_conduccio',
+        'tipus_de_targeta',
+        'numero_de_la_targeta',
     ];
 }

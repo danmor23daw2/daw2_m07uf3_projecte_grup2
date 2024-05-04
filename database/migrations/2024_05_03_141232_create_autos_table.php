@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('autos', function (Blueprint $table) {
             $table->string('matricula_auto',7)->primary();
-            $table->integer('número de bastidor');
+            $table->integer('numero_de_bastidor');
             $table->string('marca',30);
             $table->string('model',30);
             $table->string('color',20);
-            $table->integer('nombre de places');
-            $table->integer('nombre de portes');
-            $table->integer('grandària del maleter');
-            $table->enum('tipus de combustible',['gasolina','diesel','elèctric']);
+            $table->integer('nombre_de_places');
+            $table->integer('nombre_de_portes');
+            $table->integer('grandaria_del_maleter');
+            $table->enum('tipus_de_combustible',['gasolina','diesel','elèctric']);
+            $table->timestamps();
         });
     }
 

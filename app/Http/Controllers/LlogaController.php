@@ -12,7 +12,8 @@ class LlogaController extends Controller
      */
     public function index()
     {
-        //
+        $dades_lloga = Lloga::all();
+        return view('llista_lloga', compact('dades_lloga'));
     }
 
     /**
@@ -20,7 +21,7 @@ class LlogaController extends Controller
      */
     public function create()
     {
-        //
+        return view('crea_lloga');
     }
 
     /**
@@ -28,8 +29,20 @@ class LlogaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $noullogas = $request->validate([
+            'DNI_client' => 'required',
+            'matricula_auto' => 'required',
+            'data_del_prestec' => 'required',
+            'data_de_devolucio' => 'required',
+            'lloc_de_devolucio' => 'required',
+            'preu_per_dia' => 'required',
+            'email' => 'required',
+            'prestec_amb_retorn_de_diposit_ple' => 'required',
+            "tipus_dassegurança" => 'required',
+        ]);
+        $llogas = Lloga::create($noullogas);
+        return view('dashboard');
+        }
 
     /**
      * Display the specified resource.

@@ -12,7 +12,8 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        //
+        $dades_clients = Clients::all();
+        return view('llista_clients', compact('dades_clients'));
     }
 
     /**
@@ -20,7 +21,7 @@ class ClientsController extends Controller
      */
     public function create()
     {
-        //
+        return view('crea_clients');
     }
 
     /**
@@ -28,8 +29,23 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $nouClient = $request->validate([
+            'DNI_client' => 'required',
+            'nom_i_cognoms' => 'required',
+            'edat' => 'required',
+            'telefon' => 'required',
+            'adreça' => 'required',
+            'ciutat' => 'required',
+            'email' => 'required',
+            'numero_del_permis_de_conduccio' => 'required',
+            'punts_del_permis_de_conduccio' => 'required',
+            'punts_del_permis_de_conduccio' => 'required',
+            'tipus_de_targeta' => 'required',
+            'numero_de_la_targeta' => 'required',
+        ]);
+        $client = Clients::create($nouClient);
+        return view('dashboard');
+        }
 
     /**
      * Display the specified resource.

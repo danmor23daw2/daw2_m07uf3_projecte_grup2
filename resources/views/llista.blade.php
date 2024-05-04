@@ -1,52 +1,39 @@
 @extends('disseny')
 @section('content')
-<h1>Llista d'empleats</h1>
+<h1>Llista d'autos</h1>
 <div class="mt-5">
 <table class="table">
 <thead>
 <tr class="table-primary">
-<td>tid</td>
-<td>Nom</td>
-<td>Cognoms</td>
-<td>NIF</td>
-<td>Data de naixement</td>
-<td>Sexe</td>
-<td>Adreça</td>
-<td>Telèfon fixe</td>
-<td>Telèfon mòbil</td>
-<td>Email</td>
-<td>Fotografia</td>
-<td>Treball a distància</td>
-<td>Tipus de contracte</td>
-<td>Data de contractació</td>
-<td>Categoria</td>
-<td>Nom de la feina</td>
-<td>Sou</td>
+<td>Matricula auto</td>
+<td>número de bastidor</td>
+<td>marca</td>
+<td>model</td>
+<td>color</td>
+<td>nombre de places</td>
+<td>nombre de portes</td>
+<td>grandària del maleter</td>
+<td>tipus de combustible</td>
 </tr>
 </thead>
 <tbody>
-@foreach($dades_treballadors as $treb)
+@foreach($dades_autos as $treb)
 <tr>
-<td>{{$treb->tid}}</td>
-<td>{{$treb->nom}}</td>
-<td>{{$treb->cognoms}}</td>
-<td>{{$treb->nif}}</td>
-<td>{{$treb->data_naixement}}</td>
-<td>{{$treb->sexe}}</td>
-<td>{{$treb->adressa}}</td>
-<td>{{$treb->tlf_fixe}}</td>
-<td>{{$treb->tlf_mobil}}</td>
-<td>{{$treb->email}}</td>
-<td>{{$treb->fotografia}}</td>
-<td>{{$treb->treball_distancia}}</td>
-<td>{{$treb->tipus_contracte}}</td>
-<td>{{$treb->data_contractacio}}</td>
-<td>{{$treb->categoria}}</td>
-<td>{{$treb->nom_feina}}</td>
-<td>{{$treb->sou}}</td>
+<td>{{$treb->matricula_auto}}</td>
+<td>{{$treb->numero_de_bastidor}}</td>
+<td>{{$treb->marca}}</td>
+<td>{{$treb->model}}</td>
+<td>{{$treb->color}}</td>
+<td>{{$treb->nombre_de_places}}</td>
+<td>{{$treb->nombre_de_portes}}</td>
+<td>{{$treb->grandaria_del_maleter}}</td>
+<td>{{$treb->tipus_de_combustible}}</td>
 </tr>
 @endforeach
 </tbody>
 </table>
 <div>
+<div class="p-6 bg-white border-b border-gray-200">
+<a href="{{ url('dashboard') }}">Torna al dashboard<a/>
+</div>
 @endsection

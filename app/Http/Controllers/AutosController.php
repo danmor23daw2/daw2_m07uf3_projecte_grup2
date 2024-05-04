@@ -12,7 +12,8 @@ class AutosController extends Controller
      */
     public function index()
     {
-        //
+        $dades_autos = Autos::all();
+        return view('llista', compact('dades_autos'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AutosController extends Controller
      */
     public function create()
     {
-        //
+        return view('crea');
     }
 
     /**
@@ -28,8 +29,20 @@ class AutosController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $nouAuto = $request->validate([
+            'matricula_auto' => 'required',
+            'numero_de_bastidor' => 'required',
+            'marca' => 'required',
+            'model' => 'required',
+            'color' => 'required',
+            'nombre_de_places' => 'required',
+            'nombre_de_portes' => 'required',
+            'grandaria_del_maleter' => 'required',
+            'tipus_de_combustible' => 'required',
+        ]);
+        $autos = Autos::create($nouAuto);
+        return view('dashboard');
+        }
 
     /**
      * Display the specified resource.

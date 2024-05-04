@@ -12,17 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->string('DNI_client',9)->primary();
-            $table->string('nom i cognoms',60);
+            $table->string('DNI_client', 9)->primary();
+            $table->string('nom_i_cognoms', 60);
             $table->integer('edat');
-            $table->integer('telèfon');
-            $table->string('adreça',60);
-            $table->string('ciutat',40);
-            $table->string('email',50);
-            $table->integer('número del permís de conducció');
-            $table->integer('punts del permís de conducció');
-            $table->enum('tipus de targeta' ,['Dèbit','Crèdit']);
-            $table->integer('número de la targeta');
+            $table->integer('telefon');
+            $table->string('adreça', 60);
+            $table->string('ciutat', 40);
+            $table->string('email', 50);
+            $table->integer('numero_del_permis_de_conduccio');
+            $table->integer('punts_del_permis_de_conduccio');
+            $table->enum('tipus_de_targeta', ['Dèbit', 'Crèdit']);
+            $table->integer('numero_de_la_targeta');
+            $table->timestamps();
+
         });
     }
 
@@ -34,3 +36,6 @@ return new class extends Migration
         Schema::dropIfExists('clients');
     }
 };
+
+
+

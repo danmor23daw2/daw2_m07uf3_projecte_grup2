@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('llogas', function (Blueprint $table) {
             $table->string('DNI_client', 9);
             $table->string("matricula_auto", 7);
-            $table->date('data del préstec');
-            $table->date('data de devolució');
-            $table->string('lloc de devolució', 50);
-            $table->float('preu per dia');
+            $table->date('data_del_prestec');
+            $table->date('data_de_devolucio');
+            $table->string('lloc_de_devolucio', 50);
+            $table->float('preu_per_dia');
             $table->string('email', 50);
-            $table->enum('préstec amb retorn de dipòsit ple', ['sí', 'no']);
-            $table->enum("tipus d'assegurança", ['Franquícia fins a 1000 Euros', 'Franquíca fins 500 Euros', 'Sense franquícia']);
+            $table->enum('prestec_amb_retorn_de_diposit_ple', ['sí', 'no']);
+            $table->enum("tipus_dassegurança", ['Franquícia fins a 1000 Euros', 'Franquíca fins 500 Euros', 'Sense franquícia']);
+            $table->timestamps();
             
             $table->primary(['DNI_client', 'matricula_auto']);
         });

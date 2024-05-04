@@ -16,13 +16,13 @@ class Lloga extends Model
     protected $fillable = [
         'DNI_client',
         'matricula_auto',
-        'data del préstec',
-        'data de devolució',
-        'lloc de devolució',
-        'preu per dia',
+        'data_del_prestec',
+        'data_de_devolucio',
+        'lloc_de_devolucio',
+        'preu_per_dia',
         'email',
-        'préstec amb retorn de dipòsit ple',
-        "tipus d'assegurança",
+        'prestec_amb_retorn_de_diposit_ple',
+        "tipus_dassegurança",
     ];
 
 }

@@ -12,7 +12,7 @@ class Autos extends Model
     public $incrementing = false; 
     protected $keyType = 'string';
     protected $fillable = [
-        'matricula_auto','número de bastidor','marca','model','color','nombre de places',
-        'nombre de portes','grandària del maleter','tipus de combustible'
+        'matricula_auto','numero_de_bastidor','marca','model','color','nombre_de_places',
+        'nombre_de_portes','grandaria_del_maleter','tipus_de_combustible'
     ];
 }
