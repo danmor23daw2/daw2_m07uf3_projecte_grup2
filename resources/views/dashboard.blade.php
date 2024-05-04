@@ -21,6 +21,10 @@
                 <a href="{{ url('llogas') }}">Mostra dades de la taula llogas<a/>
                 </div>
                 <a href="{{ url('llogas/create') }}">Crea un nou registre<a/>
+                <div class="p-6 bg-black border-b border-gray-200">
+                <a href="{{ url('usuaris') }}">Mostra dades de la taula Usuaris<a/>
+                </div>
+                <a href="{{ url('usuaris/create') }}">Crea un nou registre<a/>
                 </div>
             </div>
         </div>

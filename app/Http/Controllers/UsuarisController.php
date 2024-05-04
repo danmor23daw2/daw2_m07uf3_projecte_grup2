@@ -12,7 +12,8 @@ class UsuarisController extends Controller
      */
     public function index()
     {
-        //
+        $dades_usuaris = Usuaris::all();
+        return view('llista_usuaris', compact('dades_usuaris'));
     }
 
     /**
@@ -20,7 +21,7 @@ class UsuarisController extends Controller
      */
     public function create()
     {
-        //
+        return view('crear_usuaris');
     }
 
     /**
@@ -28,8 +29,17 @@ class UsuarisController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $nouUsuari = $request->validate([
+            'nom_i_cognoms' => 'required',
+            'email' => 'required',
+            'contrasenya' => 'required',
+            'tipus' => 'required',
+            'darrera_hora_d_entrada' => 'required',
+            'darrera_hora_de_sortida' => 'required',
+        ]);
+        $usuaris = Usuaris::create($nouUsuari);
+        return view('dashboard');
+        }
 
     /**
      * Display the specified resource.
