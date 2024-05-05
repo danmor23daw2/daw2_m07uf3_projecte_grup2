@@ -15,7 +15,16 @@ class UsuarisController extends Controller
         $dades_usuaris = Usuaris::all();
         return view('llista_usuaris', compact('dades_usuaris'));
     }
-
+    public function index_basic()
+    {
+        $dades_usuaris = Usuaris::all();
+        return view('llista_usuaris_basic', compact('dades_usuaris'));
+    }
+    public function show_basic($email)
+    {
+        $dades_usuaris = Usuaris::findOrFail($email);
+        return view('mostra_usuaris_basic',compact('dades_usuaris'));
+    }
     /**
      * Show the form for creating a new resource.
      */

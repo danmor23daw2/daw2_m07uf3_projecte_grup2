@@ -15,7 +15,17 @@ class ClientsController extends Controller
         $dades_clients = Clients::all();
         return view('llista_clients', compact('dades_clients'));
     }
+    public function index_basic()
+    {
+        $dades_clients = Clients::all();
+        return view('llista_clients_basic', compact('dades_clients'));
+    }
 
+    public function show_basic($DNI_client)
+    {
+        $dades_clients = Clients::findOrFail($DNI_client);
+        return view('mostra_clients_basic',compact('dades_clients'));
+    }
     /**
      * Show the form for creating a new resource.
      */

@@ -15,7 +15,16 @@ class AutosController extends Controller
         $dades_autos = Autos::all();
         return view('llista', compact('dades_autos'));
     }
-
+    public function index_basic()
+    {
+        $dades_autos = Autos::all();
+        return view('llista_basica', compact('dades_autos'));
+    }
+    public function show_basic($matricula_auto)
+    {
+        $dades_autos = Autos::findOrFail($matricula_auto);
+        return view('mostra_basic',compact('dades_autos'));
+    }
     /**
      * Show the form for creating a new resource.
      */

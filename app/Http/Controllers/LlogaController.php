@@ -15,7 +15,16 @@ class LlogaController extends Controller
         $dades_lloga = Lloga::all();
         return view('llista_lloga', compact('dades_lloga'));
     }
-
+    public function index_basic()
+    {
+        $dades_lloga = Lloga::all();
+        return view('llista_lloga_basic', compact('dades_lloga'));
+    }
+    public function show_basic($matricula_auto)
+    {
+        $dades_lloga = Lloga::findOrFail($matricula_auto);
+        return view('mostra_lloga_basic',compact('dades_lloga'));
+    }
     /**
      * Show the form for creating a new resource.
      */
