@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Models\Clients;
 use Illuminate\Http\Request;
 
@@ -14,6 +16,27 @@ class ClientsController extends Controller
     {
         $dades_clients = Clients::all();
         return view('llista_clients', compact('dades_clients'));
+    }
+    public function generarPDFClient($DNI_client)
+    {
+        // Obtiene los datos del auto específico
+        $client = Clients::findOrFail($DNI_client);
+        
+        // Carga la vista en la que tienes el detalle del auto en HTML
+        $html = view('detalle_clients_pdf', compact('client'))->render();
+        
+        // Configura Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        
+        // Renderiza el HTML en PDF
+        $dompdf->render();
+        
+        // Envía el PDF al navegador
+        return $dompdf->stream('detalle_clients.pdf');
     }
     public function index_basic()
     {
@@ -33,7 +56,6 @@ class ClientsController extends Controller
     {
         return view('crea_clients');
     }
-
     /**
      * Store a newly created resource in storage.
      */

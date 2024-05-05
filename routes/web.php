@@ -28,7 +28,13 @@ Route::resource('clients', ClientsController::class);
 Route::resource('llogas', LlogaController::class);
 Route::resource('usuaris', UsuarisController::class);
 
+
 });
+Route::get('autos/generar-pdf/{matricula_auto}', 'App\Http\Controllers\AutosController@generarPDFAutos')->name('autos.generarPDFAutos');
+Route::get('clients/generar-pdf/{DNI_client}', 'App\Http\Controllers\ClientsController@generarPDFClient')->name('clients.generarPDFClient');
+Route::get('llogas/generar-pdf/{matricula_auto}', 'App\Http\Controllers\LlogaController@generarPDFLloga')->name('llogas.generarPDFLloga');
+Route::get('usuaris/generar-pdf/{email}', 'App\Http\Controllers\UsuarisController@generarPDFUsuari')->name('usuaris.generarPDFUsuari');
+
 Route::group(['middleware' => 'auth'], function(){
 Route::get('/dashboard_basic', function () {
     return view('dashboard_basic');

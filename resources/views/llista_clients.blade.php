@@ -37,6 +37,7 @@
 <form action="{{ route('clients.destroy', $treb->DNI_client)}}" method="post" style="display: inline-block">
 <a href="{{ route('clients.edit', $treb->DNI_client)}}" class="btn btn-primary btn-sm">Edita</a>
 <a href="{{ route('clients.show', $treb->DNI_client)}}" class="btn btn-info btn-sm">Mostra</a>
+<a href="{{ route('clients.generarPDFClient', $treb->DNI_client)}}" class="btn btn-success btn-sm">Generar PDF</a>
 @csrf
 @method('DELETE')
 <button class="btn btn-danger btn-sm" type="submit">

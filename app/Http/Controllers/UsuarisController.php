@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Models\Usuaris;
 use Illuminate\Http\Request;
 
@@ -14,6 +16,22 @@ class UsuarisController extends Controller
     {
         $dades_usuaris = Usuaris::all();
         return view('llista_usuaris', compact('dades_usuaris'));
+    }
+    public function generarPDFUsuari($email)
+    {
+        $usuari = Usuaris::findOrFail($email);
+        
+        $html = view('detalle_usuaris_pdf', compact('usuari'))->render();
+        
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        
+        $dompdf->render();
+        
+        return $dompdf->stream('detalle_usuaris.pdf');
     }
     public function index_basic()
     {

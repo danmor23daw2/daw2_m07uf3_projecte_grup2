@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Models\Lloga;
 use Illuminate\Http\Request;
 
@@ -14,6 +16,27 @@ class LlogaController extends Controller
     {
         $dades_lloga = Lloga::all();
         return view('llista_lloga', compact('dades_lloga'));
+    }
+    public function generarPDFLloga($matricula_auto)
+    {
+        // Obtiene los datos del auto específico
+        $lloga = Lloga::findOrFail($matricula_auto);
+        
+        // Carga la vista en la que tienes el detalle del auto en HTML
+        $html = view('detalle_lloga_pdf', compact('lloga'))->render();
+        
+        // Configura Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        
+        // Renderiza el HTML en PDF
+        $dompdf->render();
+        
+        // Envía el PDF al navegador
+        return $dompdf->stream('detalle_lloga.pdf');
     }
     public function index_basic()
     {

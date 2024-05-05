@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Autos;
 use Illuminate\Http\Request;
-
+use Dompdf\Dompdf;
+use Dompdf\Options;
 class AutosController extends Controller
 {
     /**
@@ -14,6 +15,27 @@ class AutosController extends Controller
     {
         $dades_autos = Autos::all();
         return view('llista', compact('dades_autos'));
+    }
+    public function generarPDFAutos($matricula_auto)
+    {
+        // Obtiene los datos del auto específico
+        $auto = Autos::findOrFail($matricula_auto);
+        
+        // Carga la vista en la que tienes el detalle del auto en HTML
+        $html = view('detalle_auto_pdf', compact('auto'))->render();
+        
+        // Configura Dompdf
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        
+        // Renderiza el HTML en PDF
+        $dompdf->render();
+        
+        // Envía el PDF al navegador
+        return $dompdf->stream('detalle_auto.pdf');
     }
     public function index_basic()
     {
