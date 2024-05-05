@@ -9,7 +9,7 @@ class Lloga extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = ['DNI_client', 'matricula_auto'];
+    protected $primaryKey = 'matricula_auto';
     public $incrementing = false; 
     protected $keyType = 'string';
 

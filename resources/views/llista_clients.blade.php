@@ -33,6 +33,16 @@
 <td>{{$treb->tipus_de_targeta}}</td>
 <td>{{$treb->numero_de_la_targeta}}</td>
 </tr>
+<td class="text-left">
+<form action="{{ route('clients.destroy', $treb->DNI_client)}}" method="post" style="display: inline-block">
+<a href="{{ route('clients.edit', $treb->DNI_client)}}" class="btn btn-primary btn-sm">Edita</a>
+@csrf
+@method('DELETE')
+<button class="btn btn-danger btn-sm" type="submit">
+Esborra
+</button>
+</form>
+</td>
 @endforeach
 </tbody>
 </table>

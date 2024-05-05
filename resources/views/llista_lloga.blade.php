@@ -29,6 +29,16 @@
 <td>{{$treb->prestec_amb_retorn_de_diposit_ple}}</td>
 <td>{{$treb->tipus_dassegurança}}</td>
 </tr>
+<td class="text-left">
+<form action="{{ route('llogas.destroy', $treb->matricula_auto) }}" method="post" style="display: inline-block">
+<a href="{{ route('llogas.edit', $treb->matricula_auto)}}" class="btn btn-primary btn-sm">Edita</a>
+@csrf
+@method('DELETE')
+<button class="btn btn-danger btn-sm" type="submit">
+Esborra
+</button>
+</form>
+</td>
 @endforeach
 </tbody>
 </table>

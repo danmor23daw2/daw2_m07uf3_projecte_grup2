@@ -9,6 +9,10 @@ class Usuaris extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'email';
+    public $incrementing = false; 
+    protected $keyType = 'string';
+
     protected $fillable = [
         'nom_i_cognoms',
         'email',

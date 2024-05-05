@@ -55,24 +55,38 @@ class AutosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Autos $autos)
+    public function edit($matricula_auto)
     {
-        //
+        $dades_autos = Autos::findOrFail($matricula_auto);
+        return view('actualitza',compact('dades_autos'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Autos $autos)
+    public function update(Request $request, $matricula_auto)
     {
-        //
+        $noves_dades_autos = $request->validate([
+            'matricula_auto' => 'required',
+            'numero_de_bastidor' => 'required',
+            'marca' => 'required',
+            'model' => 'required',
+            'color' => 'required',
+            'nombre_de_places' => 'required',
+            'nombre_de_portes' => 'required',
+            'grandaria_del_maleter' => 'required',
+            'tipus_de_combustible' => 'required',
+            ]);
+            Autos::findOrFail($matricula_auto)->update($noves_dades_autos);
+            return view('dashboard');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Autos $autos)
+    public function destroy($matricula_auto)
     {
-        //
+        $autos = Autos::findOrFail($matricula_auto)->delete();
+        return view('dashboard');
     }
 }

@@ -1,23 +1,23 @@
 @extends('disseny')
 @section('content')
 <div class="card mt-5">
-  <div class="card-header">
-    Afegeix un nou Lloga
-  </div>
-
-  <div class="card-body">
-    @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-      </div>
-    @endif
-    <form method="post" action="/llogas">
-        @csrf
-        <div class="form-group">           
+    <div class="card-header">
+        Actualització de dades
+    </div>
+    <div class="card-body">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <form method="post" action="{{ route('llogas.update', $dades_lloga->matricula_auto) }}">
+			@csrf
+            @method('PATCH')        
+            <div class="form-group">           
             <label for="DNI_client">DNI client</label>
             <input type="text" class="form-control" name="DNI_client"/>
         </div>
@@ -59,12 +59,10 @@
 			    <option value="Franquíca fins 500 Euros">Franquíca fins 500 Euros</option>
                 <option value="Sense franquícia">Sense franquícia</option>
 			</select>            
-        </div>   
-        <button type="submit" class="btn btn-block btn-primary">Envia</button>
-    </form>    
-  </div>
+        </div>     
+			<button type="submit" class="btn btn-block btn-primary">Envia</button>
+        </form>
+    </div>
 </div>
-<div class="p-6 bg-white border-b border-gray-200">
-<a href="{{ url('dashboard') }}">Torna al dashboard</a>
-</div>
+<br><a href="{{ url('llogas') }}">Accés directe a la Llista d'lloga</a
 @endsection

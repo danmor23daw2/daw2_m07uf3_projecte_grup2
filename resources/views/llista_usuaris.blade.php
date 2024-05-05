@@ -1,6 +1,6 @@
 @extends('disseny')
 @section('content')
-<h1>Llista de lloga</h1>
+<h1>Llista de Usuaris</h1>
 <div class="mt-5">
 <table class="table">
 <thead>
@@ -24,6 +24,16 @@
 <td>{{$treb->darrera_hora_d_entrada}}</td>
 <td>{{$treb->darrera_hora_de_sortida}}</td>
 </tr>
+<td class="text-left">
+<form action="{{ route('usuaris.destroy', $treb->email)}}" method="post" style="display: inline-block">
+<a href="{{ route('usuaris.edit', $treb->email)}}" class="btn btn-primary btn-sm">Edita</a>
+@csrf
+@method('DELETE')
+<button class="btn btn-danger btn-sm" type="submit">
+Esborra
+</button>
+</form>
+</td>
 @endforeach
 </tbody>
 </table>
