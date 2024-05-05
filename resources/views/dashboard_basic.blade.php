@@ -23,4 +23,12 @@
             </div>
         </div>
     </div>
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        @if (session('error'))
+            <div class="alert alert-success">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
+
 </x-app-layout>

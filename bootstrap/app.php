@@ -22,6 +22,9 @@ return Application::configure(basePath: dirname(__DIR__))
             '/llogas',
             '/usuaris',
             ]);
+        $middleware->alias([
+            'adminAuth' => \App\Http\Middleware\AdminAuth::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->renderable(function(QueryException $exception) {
