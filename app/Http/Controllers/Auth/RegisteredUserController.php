@@ -29,21 +29,30 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-    $request->validate([
-    'name' => ['required', 'string', 'max:255'],
-    'role' => ['required', 'string', 'max:5'],
-    'email' => ['required', 'string', 'lowercase', 'email', 'max:255',
-    'unique:'.User::class],
-    'password' => ['required', 'confirmed', Rules\Password::defaults()],
-    ]);
-    $user = User::create([
-    'name' => $request->name,
-    'role' => $request->role,
-    'email' => $request->email,
-    'password' => Hash::make($request->password),
-    ]);
-    event(new Registered($user));
-    Auth::login($user);
-    return redirect('dashboard');
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'capDepartament' => ['required', 'string', 'max:5'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+    
+        $user = User::create([
+            'name' => $request->name,
+            'capDepartament' => $request->capDepartament,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+    
+        event(new Registered($user));
+    
+        Auth::login($user);
+
+        if ($user->capDepartament === 'basic') {
+            return redirect('dashboard_basic');
+        } elseif ($user->capDepartament === 'admin') {
+            return redirect('dashboard');
+        } else {
+            return redirect('dashboard');
+        }
     }
 }
