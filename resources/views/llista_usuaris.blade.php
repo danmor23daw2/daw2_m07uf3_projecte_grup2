@@ -27,6 +27,7 @@
 <td class="text-left">
 <form action="{{ route('usuaris.destroy', $treb->email)}}" method="post" style="display: inline-block">
 <a href="{{ route('usuaris.edit', $treb->email)}}" class="btn btn-primary btn-sm">Edita</a>
+<a href="{{ route('usuaris.show', $treb->email)}}" class="btn btn-info btn-sm">Mostra</a>
 @csrf
 @method('DELETE')
 <button class="btn btn-danger btn-sm" type="submit">

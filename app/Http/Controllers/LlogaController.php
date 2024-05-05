@@ -47,9 +47,10 @@ class LlogaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Lloga $lloga)
+    public function show($DNI_client)
     {
-        //
+        $dades_lloga = Lloga::findOrFail($DNI_client);
+        return view('mostra_lloga',compact('dades_lloga'));
     }
 
     /**

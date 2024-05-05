@@ -33,6 +33,7 @@
 <td class="text-left">
 <form action="{{ route('autos.destroy', $treb->matricula_auto)}}" method="post" style="display: inline-block">
 <a href="{{ route('autos.edit', $treb->matricula_auto)}}" class="btn btn-primary btn-sm">Edita</a>
+<a href="{{ route('autos.show', $treb->matricula_auto)}}" class="btn btn-info btn-sm">Mostra</a>
 @csrf
 @method('DELETE')
 <button class="btn btn-danger btn-sm" type="submit">

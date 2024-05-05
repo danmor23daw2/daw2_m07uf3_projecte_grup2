@@ -44,9 +44,10 @@ class UsuarisController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Usuaris $usuaris)
+    public function show($email)
     {
-        //
+        $dades_usuaris = Usuaris::findOrFail($email);
+        return view('mostra_usuaris',compact('dades_usuaris'));
     }
 
     /**

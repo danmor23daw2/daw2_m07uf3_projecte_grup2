@@ -47,9 +47,10 @@ class AutosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Autos $autos)
+    public function show($matricula_auto)
     {
-        //
+        $dades_autos = Autos::findOrFail($matricula_auto);
+        return view('mostra',compact('dades_autos'));
     }
 
     /**

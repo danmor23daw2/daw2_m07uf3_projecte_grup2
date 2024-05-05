@@ -39,7 +39,6 @@ class ClientsController extends Controller
             'email' => 'required',
             'numero_del_permis_de_conduccio' => 'required',
             'punts_del_permis_de_conduccio' => 'required',
-            'punts_del_permis_de_conduccio' => 'required',
             'tipus_de_targeta' => 'required',
             'numero_de_la_targeta' => 'required',
         ]);
@@ -50,9 +49,10 @@ class ClientsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Clients $clients)
+    public function show($DNI_client)
     {
-        //
+        $dades_clients = Clients::findOrFail($DNI_client);
+        return view('mostra_clients',compact('dades_clients'));
     }
 
     /**
@@ -78,7 +78,6 @@ class ClientsController extends Controller
             'ciutat' => 'required',
             'email' => 'required',
             'numero_del_permis_de_conduccio' => 'required',
-            'punts_del_permis_de_conduccio' => 'required',
             'punts_del_permis_de_conduccio' => 'required',
             'tipus_de_targeta' => 'required',
             'numero_de_la_targeta' => 'required',
