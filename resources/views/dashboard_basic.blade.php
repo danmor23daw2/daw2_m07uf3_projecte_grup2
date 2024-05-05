@@ -11,19 +11,14 @@
                 <div class="p-6 bg-black border-b border-gray-200">
                 <a href="{{ url('autos/index_basic') }}">Mostra dades de la taula Autos<a/>
                 </div>
-                <a href="{{ url('autos/create') }}">Crea un nou registre<a/>
                 <div class="p-6 bg-black border-b border-gray-200">
                 <a href="{{ url('clients/index_basic') }}">Mostra dades de la taula Clients<a/>
                 </div>
-                <a href="{{ url('clients/create') }}">Crea un nou registre<a/>
                 <div class="p-6 bg-black border-b border-gray-200">
                 <a href="{{ url('llogas/index_basic') }}">Mostra dades de la taula Llogas<a/>
                 </div>
-                <a href="{{ url('llogas/create') }}">Crea un nou registre<a/>
                 <div class="p-6 bg-black border-b border-gray-200">
                 <a href="{{ url('usuaris/index_basic') }}">Mostra dades de la taula Usuaris<a/>
-                </div>
-                <a href="{{ url('usuaris/create') }}">Crea un nou registre<a/>
                 </div>
             </div>
         </div>

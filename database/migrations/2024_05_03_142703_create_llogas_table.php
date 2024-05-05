@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('llogas', function (Blueprint $table) {
-            $table->string('DNI_client', 9)->primary();
-            $table->string("matricula_auto", 7)->primary();
+            $table->string('DNI_client', 9);
+            $table->string("matricula_auto", 7);
             $table->date('data_del_prestec');
             $table->date('data_de_devolucio');
             $table->string('lloc_de_devolucio', 50);
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum("tipus_dassegurança", ['Franquícia fins a 1000 Euros', 'Franquíca fins 500 Euros', 'Sense franquícia']);
             $table->timestamps();
             
+            $table->primary(['DNI_client', 'matricula_auto']);
         });
     }
 
