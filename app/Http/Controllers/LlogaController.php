@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use App\Models\Lloga;
+use App\Models\Autos;
+use App\Models\Clients;
 use Illuminate\Http\Request;
 
 class LlogaController extends Controller
@@ -19,23 +21,18 @@ class LlogaController extends Controller
     }
     public function generarPDFLloga($matricula_auto)
     {
-        // Obtiene los datos del auto específico
         $lloga = Lloga::findOrFail($matricula_auto);
         
-        // Carga la vista en la que tienes el detalle del auto en HTML
         $html = view('detalle_lloga_pdf', compact('lloga'))->render();
         
-        // Configura Dompdf
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
         
         $dompdf = new Dompdf($options);
         $dompdf->loadHtml($html);
         
-        // Renderiza el HTML en PDF
         $dompdf->render();
         
-        // Envía el PDF al navegador
         return $dompdf->stream('detalle_lloga.pdf');
     }
     public function index_basic()
@@ -61,20 +58,32 @@ class LlogaController extends Controller
      */
     public function store(Request $request)
     {
-        $noullogas = $request->validate([
-            'DNI_client' => 'required',
+        $request->validate([
             'matricula_auto' => 'required',
+            'DNI_client' => 'required',
             'data_del_prestec' => 'required',
             'data_de_devolucio' => 'required',
             'lloc_de_devolucio' => 'required',
             'preu_per_dia' => 'required',
             'email' => 'required',
             'prestec_amb_retorn_de_diposit_ple' => 'required',
-            "tipus_dassegurança" => 'required',
+            'tipus_dassegurança' => 'required',
         ]);
-        $llogas = Lloga::create($noullogas);
-        return view('dashboard');
+        $autosExiste = Autos::where('matricula_auto', $request->matricula_auto)->exists();
+        $clientExiste = Clients::where('DNI_client', $request->DNI_client)->exists();
+        
+        if (!$autosExiste) {
+            return back()->withInput()->withErrors(['matricula_auto' => 'El auto no existe']);
         }
+        if (!$clientExiste) {
+            return back()->withInput()->withErrors(['DNI_client' => 'El cliente no existe']);
+        }
+    
+        Lloga::create($request->all());
+    
+        return redirect()->route('dashboard');
+    }
+    
 
     /**
      * Display the specified resource.
@@ -100,8 +109,8 @@ class LlogaController extends Controller
     public function update(Request $request, $matricula_auto)
     {
         $noves_dades_lloga = $request->validate([
-            'DNI_client' => 'required',
             'matricula_auto' => 'required',
+            'DNI_client' => 'required',
             'data_del_prestec' => 'required',
             'data_de_devolucio' => 'required',
             'lloc_de_devolucio' => 'required',
