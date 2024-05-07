@@ -81,7 +81,7 @@ class LlogaController extends Controller
     
         Lloga::create($request->all());
     
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard_basic');
     }
     
 
@@ -120,7 +120,7 @@ class LlogaController extends Controller
             "tipus_dassegurança" => 'required',
             ]);
             Lloga::findOrFail($matricula_auto)->update($noves_dades_lloga);
-            return view('dashboard');
+            return view('dashboard_basic');
     }
 
     /**
@@ -129,6 +129,6 @@ class LlogaController extends Controller
     public function destroy($matricula_auto)
     {
         $lloga = Lloga::findOrFail($matricula_auto)->delete();
-        return view('dashboard');
+        return view('dashboard_basic');
     }
 }

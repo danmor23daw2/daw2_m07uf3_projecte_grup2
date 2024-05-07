@@ -19,23 +19,18 @@ class ClientsController extends Controller
     }
     public function generarPDFClient($DNI_client)
     {
-        // Obtiene los datos del auto específico
         $client = Clients::findOrFail($DNI_client);
         
-        // Carga la vista en la que tienes el detalle del auto en HTML
         $html = view('detalle_clients_pdf', compact('client'))->render();
         
-        // Configura Dompdf
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
         
         $dompdf = new Dompdf($options);
         $dompdf->loadHtml($html);
-        
-        // Renderiza el HTML en PDF
+
         $dompdf->render();
         
-        // Envía el PDF al navegador
         return $dompdf->stream('detalle_clients.pdf');
     }
     public function index_basic()
@@ -75,7 +70,7 @@ class ClientsController extends Controller
             'numero_de_la_targeta' => 'required',
         ]);
         $client = Clients::create($nouClient);
-        return view('dashboard');
+        return view('dashboard_basic');
         }
 
     /**
@@ -115,7 +110,7 @@ class ClientsController extends Controller
             'numero_de_la_targeta' => 'required',
             ]);
             Clients::findOrFail($DNI_client)->update($noves_dades_clients);
-            return view('dashboard');
+            return view('dashboard_basic');
     }
 
     /**
@@ -124,6 +119,6 @@ class ClientsController extends Controller
     public function destroy($DNI_client)
     {
         $client = Clients::findOrFail($DNI_client)->delete();
-        return view('dashboard');
+        return view('dashboard_basic');
     }
 }

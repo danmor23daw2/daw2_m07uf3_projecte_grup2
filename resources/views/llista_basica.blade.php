@@ -30,8 +30,17 @@
 <td>{{$treb->tipus_de_combustible}}</td>
 </tr>
 <td class="text-left">
-<a href="{{ route('autos.show_basic', $treb->matricula_auto)}}"
-class="btn btn-info btn-sm">Mostra</a>
+<form action="{{ route('autos.destroy', $treb->matricula_auto)}}" method="post" style="display: inline-block">
+<a href="{{ route('autos.edit', $treb->matricula_auto)}}" class="btn btn-primary btn-sm">Edita</a>
+<a href="{{ route('autos.show_basic', $treb->matricula_auto)}}" class="btn btn-info btn-sm">Mostra</a>
+<a href="{{ route('autos.generarPDFAutos', $treb->matricula_auto)}}" class="btn btn-success btn-sm">Generar PDF</a>
+
+@csrf
+@method('DELETE')
+<button class="btn btn-danger btn-sm" type="submit">
+Esborra
+</button>
+</form>
 </td>
 </tr>
 @endforeach

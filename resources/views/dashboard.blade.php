@@ -22,11 +22,6 @@
                 </div>
                 <a href="{{ url('llogas/create') }}">Crea un nou registre<a/>
                 <div class="p-6 bg-black border-b border-gray-200">
-                <a href="{{ url('usuaris') }}">Mostra dades de la taula Usuaris<a/>
-                </div>
-                <a href="{{ url('usuaris/create') }}">Crea un nou registre<a/>
-                </div>
-                <div class="p-6 bg-black border-b border-gray-200">
                 <a href="{{ route('register') }}">Crea un nou usuari</a><br>
                 </div>
             </div>

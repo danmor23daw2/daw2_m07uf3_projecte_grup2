@@ -42,11 +42,6 @@ class AutosController extends Controller
         $dades_autos = Autos::all();
         return view('llista_basica', compact('dades_autos'));
     }
-    public function show_basic($matricula_auto)
-    {
-        $dades_autos = Autos::findOrFail($matricula_auto);
-        return view('mostra_basic',compact('dades_autos'));
-    }
     /**
      * Show the form for creating a new resource.
      */
@@ -72,7 +67,7 @@ class AutosController extends Controller
             'tipus_de_combustible' => 'required',
         ]);
         $autos = Autos::create($nouAuto);
-        return view('dashboard');
+        return view('dashboard_basic');
         }
 
     /**
@@ -92,7 +87,7 @@ class AutosController extends Controller
         $dades_autos = Autos::findOrFail($matricula_auto);
         return view('actualitza',compact('dades_autos'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
@@ -110,7 +105,7 @@ class AutosController extends Controller
             'tipus_de_combustible' => 'required',
             ]);
             Autos::findOrFail($matricula_auto)->update($noves_dades_autos);
-            return view('dashboard');
+            return view('dashboard_basic');
     }
 
     /**
@@ -119,6 +114,6 @@ class AutosController extends Controller
     public function destroy($matricula_auto)
     {
         $autos = Autos::findOrFail($matricula_auto)->delete();
-        return view('dashboard');
+        return view('dashboard_basic');
     }
 }
